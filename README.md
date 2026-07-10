@@ -6,8 +6,8 @@ Adım 1: Likidite ve Geçmiş Veri Duvarı (The Gatekeeper)
 Kod, BIST_TUM_SYMBOLS listesindeki ~500 hisseyi ThreadPoolExecutor kullanarak 16 paralel işçi ile hızlıca yfinance üzerinden indirir. Ardından şu acımasız filtreleri uygular:
 Minimum Bar Kıstası (MIN_BARS = 210): Son 1 yılda halka arz olmuş, geçmiş verisi sığ olan şirketleri eler. 200 günlük ortalamanın sağlıklı hesaplanması için bu şarttır.
 Likidite Filtresi (MIN_AVG_TL_VOLUME = 50_000_000): Son 20 günlük ortalama işlem hacmi 50 Milyon TL'nin altında olan sığ, spekülatif, tahtacının kolayca manipüle edebileceği yan tahtaları tamamen sistemin dışına iter.
-
 Fiyat Filtresi (MIN_PRICE = 2.0): Kuruşluk hisseleri (penny stocks) eler.
+
 Adım 2: Zorunlu Boğa Rejimi FiltresiAlgoritma akıntıya karşı kürek çekmeyi reddeder. 
 Bir hissenin momentum listesine girebilmesi için temel şart:Fiyat>EMA50>EMA200
 Bu dizilim yoksa, hisse ne kadar çok kazandırmış olursa olsun anında elenir. Bu filtre, düşen bıçakları (falling knives) veya geçici dipten dönüş (dead cat bounce) hareketlerini yakalamanızı engeller; yalnızca kurulu ve tescilli boğa trendindeki hisseleri içeri alır.
